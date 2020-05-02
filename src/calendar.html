@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery.datetimepicker.full.js"></script>
+
+
+<!-- Date field -->
+<h1>https://xdsoft.net/jqplugins/datetimepicker/</h1>
+<h2>Range between date# - TODO</h2>
+<input id="datetime">
+
+
+<script>
+$("#datetime").datetimepicker({
+ timepicker:false,
+ lang:'ru',
+ format:'d.m.Y',
+ inline:true,
+ formatDate:'d.m.Y',
+ minDate:'01.05.2020',//yesterday is minimum date(for today use 0 or -1970/01/01)
+ maxDate:'15.05.2020'//tomorrow is maximum date calendar
+});
+
+$("#datetime").datetimepicker({
+  timepicker:false,
+  onChangeDateTime:function(dp,$input){
+    alert($input.val())
+  }
+});
+</script>
