@@ -42,8 +42,10 @@ class Parser
     // $arr[n][4] - n-ая запись времени в unix time;
     // $arr[n][5] - n-ая запись работал ли станок в целом.  - пока убрал.
     // TODO: не совсем то, вроде, выводит в плане работы станка.
-    function getDataByDate($machine, $beginDate = 0, $endDate = null)
+    function getDataByDate($machine, $beginDate = null, $endDate = null)
     {
+        if ($beginDate === null)
+            $beginDate = 0;
         $arr = array();
         $handle = @fopen($this->pathDb . $machine, "r");
         if ($handle) {

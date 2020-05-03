@@ -4,13 +4,14 @@ $parser = new Parser();
 
 $action  = isset($_POST["action"]) ? $_POST["action"] : null;
 $machine = isset($_POST["machine"]) ? $_POST["machine"] : null;
-$dateFrom    = isset($_POST["dateFrom"]) ? urldecode($_POST["dateFrom"]) : null;
-$dateTo = isset($_POST["dateTo"]) ? urldecode($_POST["dateTo"]) : null;
-//var_dump($dateFrom);
+$dateFrom    = isset($_POST["dateFrom"]) && $_POST["dateFrom"] !== 'null' ? urldecode($_POST["dateFrom"]) : null;
+$dateTo = isset($_POST["dateTo"]) && $_POST["dateTo"] !== 'null' ? urldecode($_POST["dateTo"]) : null;
+$dateFrom = strtotime($dateFrom. ":59:59") === false ? null : strtotime($dateFrom. ":59:59");
+$dateTo = strtotime($dateTo. ":59:59") === false ? null : strtotime($dateTo. ":59:59");
 switch($action) {
 	case 'getData':
 		header('Content-Type: application/json');
-		echo json_encode($parser->getDataByDate($machine, strtotime($dateFrom. ":59:59"), strtotime($dateTo. ":59:59")));
+		echo json_encode($parser->getDataByDate($machine, $dateFrom, $dateTo));
 		break;
 	case 'getMinAndMaxTime': // получаем мин и макс дни для календаря по станку
 		header('Content-Type: application/json');

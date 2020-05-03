@@ -49,9 +49,15 @@ function init()
 			getData(machine, datePickerFrom.val(), date);
 		}
 	});
+
+	$("#allTime").click('click', () => {
+		var machine = document.getElementById('sendMachinefff').value;
+		if (machine === '') return;
+		getData(machine);
+	})
 }
 
-function getData(machine, dateFrom, dateTo)
+function getData(machine, dateFrom = null, dateTo = null)
 {
 	$.when($.ajax({
 		url: 'core/parsing.php',
