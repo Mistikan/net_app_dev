@@ -11,6 +11,7 @@ function init()
 	var sMachine = document.getElementById('sendMachinefff');
 	sMachine.addEventListener("change", updateMachine);
 
+	//  создаем выбиралку дат ОТ
 	datePickerFrom = $("#datetimefrom").datetimepicker({
 		timepicker:true,
 		//lang: 'ru',
@@ -33,6 +34,7 @@ function init()
 		}
 	});
 
+	//  создаем выбиралку дат ДО
 	datePickerTo = $("#datetimeto").datetimepicker({
 		timepicker:true,
 		//lang: 'ru',
@@ -57,6 +59,7 @@ function init()
 	})
 }
 
+// получаем данные по рэйнджу
 function getData(machine, dateFrom = null, dateTo = null)
 {
 	$.when($.ajax({

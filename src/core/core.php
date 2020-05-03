@@ -16,7 +16,7 @@ $dbManager = new Db();
 // получаем доступные станки
 $machineArr = $dbManager->getMachines();
 
-$header = $designer->getHeadContents('asdasd');
+$header = $designer->getHeadContents('18ISTv1');
 // крафтим и рисуем селектор станков по переданному списку доступных станков
 $selectMachine = $designer->getChooseMachineHtml($machineArr);
 // получаем календарь
