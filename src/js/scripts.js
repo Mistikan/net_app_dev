@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", init);
 //document.addEventListener("load", init);
+
+let datePickerFrom = false;
+let datePickerTo = false;
+
 function init()
 {
 	google.charts.load('current', {'packages':['corechart']});
@@ -7,29 +11,68 @@ function init()
 	var sMachine = document.getElementById('sendMachinefff');
 	sMachine.addEventListener("change", updateMachine);
 
-	$("#datetime").datetimepicker({
-		timepicker:false,
+	datePickerFrom = $("#datetimefrom").datetimepicker({
+		timepicker:true,
 		//lang: 'ru',
-		format: 'd.m.Y',
+		format: 'd.m.Y H',
 		theme: 'dark',
 		inline: true,
 		formatDate: 'd.m.Y',
-		/*
-		value: '16.12.2019',
-		minDate: '16.12.2019',
-		maxDate: '18.12.2019',
-		*/
-	});
-
-	$("#datetime").datetimepicker({
-	onChangeDateTime:function(dp, input){
+		formatTime:'H',
+		onChangeDateTime:function(dp, input){
 			var machine = document.getElementById('sendMachinefff').value;
 			if (machine === '') return;
 			var date = input.val();
 			console.log(machine + " -> " + date);
-			getDataForDay(machine, date);
+			// делаем минимальный выбор ДО равным выбранному значению ОТ, чтобы не вышло что ОТ - позднее ДО
+			datePickerTo = $("#datetimeto").datetimepicker({
+				value: date,
+				minDateTime: date,
+			});
+			getData(machine, date, datePickerTo.val());
 		}
 	});
+
+	datePickerTo = $("#datetimeto").datetimepicker({
+		timepicker:true,
+		//lang: 'ru',
+		format: 'd.m.Y H',
+		theme: 'dark',
+		inline: true,
+		formatDate: 'd.m.Y',
+		formatTime:'H',
+		onChangeDateTime:function(dp, input){
+			var machine = document.getElementById('sendMachinefff').value;
+			if (machine === '') return;
+			var date = input.val();
+			console.log(machine + " -> " + date);
+			getData(machine, datePickerFrom.val(), date);
+		}
+	});
+}
+
+function getData(machine, dateFrom, dateTo)
+{
+	$.when($.ajax({
+		url: 'core/parsing.php',
+		type: 'POST',
+		data: {
+			action: "getData",
+			machine: machine,
+			dateFrom: encodeURIComponent(dateFrom),
+			dateTo: encodeURIComponent(dateTo)
+		},
+		contentType: 'application/x-www-form-urlencoded',
+		success: result => {
+			return result
+		}
+	})).done((result) => {
+		var dataArr = [];
+		for (var i = 0; i < result.length; i++) {
+			dataArr.push([new Date(result[i][4] * 1000), result[i][0]]);
+		}
+		drawChart(dataArr);
+	})
 }
 
 function drawChart(arr)
@@ -48,10 +91,10 @@ function drawChart(arr)
 	);
 	*/
 
-	var data = new google.visualization.DataTable();
-	data.addColumn('date', 'Date');
-	data.addColumn('number', 'Machine_Work');
-	data.addRows(arr);
+	var table = new google.visualization.DataTable();
+	table.addColumn('date', 'Date');
+	table.addColumn('number', 'Machine_Work');
+	table.addRows(arr);
 		
     var options = {
     	title: 'Работа станка',
@@ -61,34 +104,34 @@ function drawChart(arr)
 	};
 		
     var chart = new google.visualization.LineChart(document.getElementById('graph_end'));
-    chart.draw(data, options);
+    chart.draw(table, options);
 }
 
-function getDataForDay(machine, date) 
-{
-	//1. Сбор данных, необходимых для выполнения запроса на сервере
-	// TODO: в идеале надо блочить select для перевыбора
-	$.when($.ajax({
-		url: 'core/parsing.php',
-		type: 'POST',
-		data: {
-			action: "getDataForDay",
-			machine: encodeURIComponent(machine),
-			date: encodeURIComponent(date)
-		},
-		contentType: 'application/x-www-form-urlencoded',
-		success: result => {
-			return result
-		}
-	})).done((result) => {
-		var obj = jQuery.parseJSON(result);
-		var dataArr = [];
-		for (var i = 0; i < obj.length; i++) {
-			dataArr.push([new Date(obj[i][4] * 1000), obj[i][0]]);
-		}
-		drawChart(dataArr);
-	})
-}
+// function getDataForDay(machine, date)
+// {
+// 	//1. Сбор данных, необходимых для выполнения запроса на сервере
+// 	// TODO: в идеале надо блочить select для перевыбора
+// 	$.when($.ajax({
+// 		url: 'core/parsing.php',
+// 		type: 'POST',
+// 		data: {
+// 			action: "getDataForDay",
+// 			machine: encodeURIComponent(machine),
+// 			datefrom: encodeURIComponent(date)
+// 		},
+// 		contentType: 'application/x-www-form-urlencoded',
+// 		success: result => {
+// 			return result
+// 		}
+// 	})).done((result) => {
+// 		var obj = jQuery.parseJSON(result);
+// 		var dataArr = [];
+// 		for (var i = 0; i < obj.length; i++) {
+// 			dataArr.push([new Date(obj[i][4] * 1000), obj[i][0]]);
+// 		}
+// 		drawChart(dataArr);
+// 	})
+// }
 
 function updateMachine() {
     //alert('ok');
@@ -98,10 +141,12 @@ function updateMachine() {
 // добавляем в календарь границы минимально и максимально возможной даты
 function updateCalendar(){
 	$.when(getMinAndMaxTime()).done((days) => {
-		$("#datetime").datetimepicker({
-			onGenerate: function (ct) {
-				$(this).find('.xdsoft_date');
-			},
+		datePickerFrom.datetimepicker({
+			value: days.minDays,
+			maxDate: days.maxDays,
+			minDate: days.minDays
+		});
+		datePickerTo.datetimepicker({
 			value: days.minDays,
 			maxDate: days.maxDays,
 			minDate: days.minDays
