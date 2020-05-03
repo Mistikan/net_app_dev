@@ -18,7 +18,7 @@ $header = <<<HEADER
 <h1 align="center">Проект по визуализации данных работы станков</h1>
 HEADER;
 
-$content1 = <<<CONTENT
+$chooseMachineHtml = <<<CONTENT
 <h1 align="center">Выбор станка:</h1>
 
 <form><p><select multiple id="sendMachinefff" name="machine">
