@@ -21,7 +21,7 @@ HEADER;
 $content1 = <<<CONTENT
 <h1 align="center">Выбор станка:</h1>
 
-<form><p><select multiple id="sendMachinefff" name="machine" onchange="updateMachine();">
+<form><p><select multiple id="sendMachinefff" name="machine">
 CONTENT;
 	   
 
