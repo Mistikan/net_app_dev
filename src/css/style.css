@@ -281,8 +281,11 @@ h2{
     color: black;
     font-family: GilroyMedium;
 }
-#grafic, #diagram{
+#diagram {
     display: none;
+}
+#grafic {
+    display: block;
 }
 
 /*<!-- /WHITE BLOCK -->*/
