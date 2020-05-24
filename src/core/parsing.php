@@ -3,7 +3,7 @@ require_once 'Parser.php';
 $parser = new Parser();
 
 $action  = isset($_POST["action"]) ? $_POST["action"] : null;
-$machine = isset($_POST["machine"]) ? $_POST["machine"] : null;
+$machine = isset($_POST["machine"]) ? urldecode($_POST["machine"]) . '.txt' : null;
 $dateFrom    = isset($_POST["dateFrom"]) && $_POST["dateFrom"] !== 'null' ? urldecode($_POST["dateFrom"]) : null;
 $dateTo = isset($_POST["dateTo"]) && $_POST["dateTo"] !== 'null' ? urldecode($_POST["dateTo"]) : null;
 $dateFrom = strtotime($dateFrom. ":59:59") === false ? null : strtotime($dateFrom. ":59:59");

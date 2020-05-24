@@ -45,8 +45,9 @@ class Designer
         $chooseMachineItemHtml = $this->parse($html, 'chooseMachineItem');
         $items = [];
         foreach ($machineArr as $machine) {
-            $option = $this->createSelectOption($machine);
-            $items[] = $this->switchPlaceholder($chooseMachineItemHtml, $option);
+//            $option = $this->createSelectOption($machine);
+//            $items[] = $this->switchPlaceholder($chooseMachineItemHtml, $option);
+            $items[] = $this->switchPlaceholder($chooseMachineItemHtml, $machine);
         }
         $html = $this->fillBlockWithItems($html, 'chooseMachineItem', $items);
         return $html;

@@ -1,0 +1,310 @@
+
+@font-face {
+    font-family: GilroyMedium; /* Гарнитура шрифта */
+    src: url(GILROY/GILROY-MEDIUM.ttf); /* Путь к файлу со шрифтом */   
+   }
+ @font-face {
+    font-family: Gilroy; /* Гарнитура шрифта */
+    src: url(GILROY/GILROY-REGULAR.ttf); /* Путь к файлу со шрифтом */   
+   }
+@font-face {
+    font-family: GilroyBold; /* Гарнитура шрифта */
+    src: url(GILROY/GILROY-BOLD.ttf); /* Путь к файлу со шрифтом */   
+   }
+body{
+	margin: 0;
+	background: #fbfcff;
+}
+.header{
+	background: #060c42;
+    height: 141px;
+}
+.logo{
+	width: 36px;
+    margin: 50px 0 0;
+    display: inline-block;
+    float: left;
+}
+.text_logo{
+	margin: 43px 12px 0;
+    display: inline-block;
+    font-family: GilroyBold;
+    font-size: 39px;
+    color: white;
+}
+.menu{
+	float: right;
+    margin: 56px 0 0;
+}
+.menu a{
+	display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-family: GilroyBold;
+    font-size: 20px;
+    margin: 0 0 0 77px;
+}
+.menu a:hover{
+	color:#cde4db;
+}
+.footer{
+    font-family: Gilroy;
+}
+.footer a{
+    margin: 0 34px 0 0;
+    color:#060c42;
+    text-decoration: none;
+    font-size: 16px;
+}
+.footer button{
+	font-family: Gilroy;
+	float: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+.copyright{
+	display: inline-block;
+    position: absolute;
+    left: 50%;
+    font-size: 16px;
+}
+
+.footer a:hover, .footer button:hover{
+    color: #686c8e;
+}
+
+.content{
+	width: 1200px;
+	margin: 0px auto 56px;
+}
+.container{
+  width: 100%;
+	margin: 119px 0 182px;
+}
+.container_title{
+	height: 142px;
+}
+.container_main{
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 1px 0px #00000078, 0 0 100px 0px rgba(0, 0, 0, 0.03);
+    margin-top: 65px;
+    padding: 118px 92px
+}
+h1{	
+	display: inline-block;
+    font-family: GilroyBold;
+	font-size: 43px;
+    color: #060c42;
+    margin: 0;
+    line-height: 58px;
+}
+h2{
+    font-family: GilroyBold;
+    font-size: 28px;
+    color: #060c42;
+    margin: 0;
+}
+
+/*SELECT СТАНКА*/
+
+.select-box{
+	width: 226px;
+    font-family: GilroyMedium;
+    font-size: 18px;
+    color: #060c42;
+    float: right;
+    position: relative;
+}
+.select-box__current {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  margin: 0 0 0 10px;
+}
+.select-box__current:focus + .select-box__list {
+  opacity: 1;
+}
+.select-box__current:focus + .select-box__list .select-box__option {
+  cursor: pointer;
+}
+.select-box__current:focus .select-box__icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+.select-box__icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 20px;
+  opacity: 0.3;
+  transition: 0.2s ease;
+}
+
+.select-box__input {
+  display: none;
+}
+.select-box__input:checked + .select-box__input-text {
+  display: block;
+}
+.select-box__input-text {
+	display: none;
+    margin: 0;
+	padding: 22px 0 22px 22px;
+    background-color: #e2ecff;
+    border-radius: 15px;
+}
+.select-box__list {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  z-index: 1;
+}
+.select-box__list li{
+	  background-color: #e2ecff;
+}
+.select-box__option {
+  display: block;
+  padding: 15px;
+}
+.select-box__list li:first-child{
+  border-radius:15px 15px 0 0;
+}
+.select-box__list li:last-child{
+  border-radius:0 0 15px 15px;
+}
+.select-box__list li:hover, .select-box__list li:focus {
+  color: #546c84;
+  background-color:#eef4ff;
+
+}
+/*/SELECT*/
+
+/*<!-- WHITE BLOCK -->*/
+.img_main{
+	width: 355px;
+    height: 412px;
+    display: inline-block;
+    border-radius: 10px;
+}
+#img1 {
+	background:url("https://sun1-84.userapi.com/aReAkI827tnvJkLnrC6Fmu2hFnJIJAqWUSUxVA/wxfp21_4ico.jpg");	
+	background-position: center;
+}
+#img2{
+	background:url("https://sun1-96.userapi.com/qC8o3zHlUqcoeC_TesVgFAFbe-fn4s-mxWBxUA/j88nAlYSepo.jpg");	
+	background-position: center;
+}
+.text_main {
+    width: 600px;
+    display: inline-block;
+    margin: 13px 0 0;
+    float: right;
+}
+
+.text_main p{
+	font-family: Gilroy; 
+    font-size: 20px;
+    margin: 41px 0 0;
+}
+.container_grafic{
+margin: 103px 0 0;
+}
+/*RADIO ГРАФИК/ДИАГРАММА*/
+.form_radio_btn {
+	display: inline-block;
+	margin-right: 16px;
+}
+.form_radio_btn input[type=radio] {
+	display: none;
+}
+.form_radio_btn label {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 47px;
+    font-family: GilroyMedium;
+    font-size: 20px;
+    color: #c1c1c1;
+}
+ 
+.form_radio_btn input[type=radio]:checked + label {
+    color: #fd0404;
+    border-bottom: 1px red solid;
+}
+
+.form_radio_btn label:hover {
+	color: #666;
+} 
+/*/RADIO ГРАФИК/ДИАГРАММА*/
+
+/*datetimepicker*/
+.input{
+	display: inline-block;
+    font-size: 16px;
+    font-family: Gilroy;
+    width: 120px;
+    border-radius: 15px;
+    padding: 11px;
+    background: #e2ecff;
+    border: none;
+}
+
+#s-b2{
+	display: inline-block;
+  float: none;
+	width: 180px;
+}
+#select2{
+    padding: 10px 0 10px 25px;
+}
+
+.container_grafic button{
+    border: none;
+    background: none;
+    font-family: Gilroy;
+    font-size: 30px;
+    cursor: pointer;
+    color: #060c42;
+    line-height: 47px;
+    display: inline-block;
+    vertical-align: top;
+    float: right;
+}
+.container_grafic button:hover {
+    color: black;
+    font-family: GilroyMedium;
+}
+#diagram {
+    display: none;
+}
+#grafic {
+    display: block;
+}
+
+/*<!-- /WHITE BLOCK -->*/
+
+
+/*ABOUT*/
+.info{
+    display: inline-block;
+    font-family: Gilroy;
+    margin: 87px 37px 0px 0px;
+    font-size: 20px;
+    max-width: 210px;
+    vertical-align: top;
+}
+.info p{
+	font-family: GilroyBold;
+	margin: 0;
+}
+.map{
+	margin: 116px 0 0;
+    height: 602px;
+}
+iframe {
+    border-radius: 10px;
+}

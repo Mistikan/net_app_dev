@@ -3,25 +3,35 @@ document.addEventListener("DOMContentLoaded", init);
 
 let datePickerFrom = false;
 let datePickerTo = false;
+let machine = '';
+let chart = false;
 
 function init()
 {
 	google.charts.load('current', {'packages':['corechart']});
 
-	var sMachine = document.getElementById('sendMachinefff');
-	sMachine.addEventListener("change", updateMachine);
+	var sMachine = document.getElementsByClassName('select-box__machines');
+	for (let i = 0; i < sMachine.length; i++) {
+		sMachine[i].addEventListener("click", (e) => {
+			clearChart();
+			$('#select1').text(e.target.textContent.trim());
+			machine = e.target.textContent.trim();
+			$('#machine-header').text(e.target.textContent.trim());
+			updateMachine(e.target.textContent.trim());
+		});
+	}
 
 	//  создаем выбиралку дат ОТ
 	datePickerFrom = $("#datetimefrom").datetimepicker({
 		timepicker:true,
 		//lang: 'ru',
 		format: 'd.m.Y H',
-		theme: 'dark',
-		inline: true,
+		// theme: 'dark',
+		// inline: true,
 		formatDate: 'd.m.Y',
 		formatTime:'H',
 		onChangeDateTime:function(dp, input){
-			var machine = document.getElementById('sendMachinefff').value;
+			// var machine = document.getElementById('sendMachinefff').value;
 			if (machine === '') return;
 			var date = input.val();
 			console.log(machine + " -> " + date);
@@ -39,12 +49,12 @@ function init()
 		timepicker:true,
 		//lang: 'ru',
 		format: 'd.m.Y H',
-		theme: 'dark',
-		inline: true,
+		// theme: 'dark',
+		// inline: true,
 		formatDate: 'd.m.Y',
 		formatTime:'H',
 		onChangeDateTime:function(dp, input){
-			var machine = document.getElementById('sendMachinefff').value;
+			// var machine = document.getElementById('sendMachinefff').value;
 			if (machine === '') return;
 			var date = input.val();
 			console.log(machine + " -> " + date);
@@ -52,8 +62,12 @@ function init()
 		}
 	});
 
+	$("#datetimefrom").change(function(){
+	    $("#datetimeto").datetimepicker('show');
+	});
+
 	$("#allTime").click('click', () => {
-		var machine = document.getElementById('sendMachinefff').value;
+		// var machine = document.getElementById('sendMachinefff').value;
 		if (machine === '') return;
 		getData(machine);
 	})
@@ -67,7 +81,7 @@ function getData(machine, dateFrom = null, dateTo = null)
 		type: 'POST',
 		data: {
 			action: "getData",
-			machine: machine,
+			machine: encodeURIComponent(machine),
 			dateFrom: encodeURIComponent(dateFrom),
 			dateTo: encodeURIComponent(dateTo)
 		},
@@ -82,6 +96,12 @@ function getData(machine, dateFrom = null, dateTo = null)
 		}
 		drawChart(dataArr);
 	})
+}
+
+function clearChart()
+{
+	if (chart !== false)
+		chart.clearChart();
 }
 
 function drawChart(arr)
@@ -112,7 +132,7 @@ function drawChart(arr)
         legend: { position: 'bottom' }
 	};
 		
-    var chart = new google.visualization.LineChart(document.getElementById('graph_end'));
+    chart = new google.visualization.LineChart(document.getElementById('graph_end'));
     chart.draw(table, options);
 }
 
@@ -142,14 +162,14 @@ function drawChart(arr)
 // 	})
 // }
 
-function updateMachine() {
+function updateMachine(machine) {
     //alert('ok');
-	updateCalendar();
+	updateCalendar(machine);
 }
 
 // добавляем в календарь границы минимально и максимально возможной даты
-function updateCalendar(){
-	$.when(getMinAndMaxTime()).done((days) => {
+function updateCalendar(machine){
+	$.when(getMinAndMaxTime(machine)).done((days) => {
 		datePickerFrom.datetimepicker({
 			value: days.minDays,
 			maxDate: days.maxDays,
@@ -163,8 +183,8 @@ function updateCalendar(){
 	})
 }
 
-async function getMinAndMaxTime() {
-	var machine = document.getElementById('sendMachinefff').value;
+async function getMinAndMaxTime(machine) {
+	// var machine = document.getElementById('sendMachinefff').value;
 	return $.ajax({
 		url: 'core/parsing.php',
 		type: 'POST',
