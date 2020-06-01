@@ -7,11 +7,11 @@ class Designer
      */
     private $html;
 
-    public function __construct()
+    public function __construct($designFile = 'index')
     {
         // получаем хтмльку для парсинга, если там будет не хтмлька то наверное наступит смерть
         // парсинг точно полетит
-        if ($fh = fopen(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'design' . DIRECTORY_SEPARATOR . 'design.html', 'r')) {
+        if ($fh = fopen(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'design' . DIRECTORY_SEPARATOR . $designFile . '.html', 'r')) {
             while (!feof($fh)) {
                 $this->html[] = fgets($fh);
             }
@@ -25,12 +25,14 @@ class Designer
      * @param $pagename
      * @return array
      */
-    public function getHeadContents($pagename)
+    public function getHeadContents($pagename = null)
     {
         $head = $this->parse($this->html, 'head');
-        $titleHtml = $this->parse($head, 'title');
-        $titleHtml = $this->switchPlaceholder($titleHtml, $pagename);
-        $head = $this->fillBlockWithItems($head, 'title', [$titleHtml]);
+        if ($pagename !== null) {
+            $titleHtml = $this->parse($head, 'title');
+            $titleHtml = $this->switchPlaceholder($titleHtml, $pagename);
+            $head = $this->fillBlockWithItems($head, 'title', [$titleHtml]);
+        }
         return $head;
     }
 
@@ -93,6 +95,12 @@ class Designer
         foreach ($modules as $module)
             foreach ($module as $row)
                 echo $row;
+    }
+
+    public function drawWholePage()
+    {
+        foreach ($this->html as $row)
+            echo $row;
     }
 
 
