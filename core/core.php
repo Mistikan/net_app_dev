@@ -3,11 +3,6 @@ require_once 'core/Parser.php';
 require_once 'core/Designer.php';
 require_once 'core/Db.php';
 
-// TODO: в идеале переделать эту херню в один контент
-//echo "https://ruphp.com/34888.html<br>";
-//
-//echo "https://learn.javascript.ru/introduction-browser-events";
-
 $url = substr(substr(parse_url($_SERVER['REQUEST_URI'])['path'], 0, -4), 1);
 if (empty($url))
     $url = 'index';

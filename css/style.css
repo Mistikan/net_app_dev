@@ -221,6 +221,7 @@ h2{
 .form_radio_btn {
     display: inline-block;
     margin-right: 16px;
+
 }
 .form_radio_btn input[type=radio] {
     display: none;
@@ -237,11 +238,12 @@ h2{
 .form_radio_btn input[type=radio]:checked + label {
     color: #fd0404;
     border-bottom: 1px red solid;
+    cursor: auto;
 }
 
-.form_radio_btn label:hover {
+/*.form_radio_btn label:hover {
     color: #666;
-}
+}*/
 /*/RADIO ГРАФИК/ДИАГРАММА*/
 
 /*datetimepicker*/

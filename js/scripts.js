@@ -126,7 +126,7 @@ function drawChart(arr)
 	table.addRows(arr);
 		
     var options = {
-    	title: 'Работа станка',
+    	// title: 'Работа станка',
         curveType: 'none',
 		// curveType: 'function',
         legend: { position: 'bottom' }

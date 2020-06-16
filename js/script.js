@@ -35,17 +35,17 @@ $(document).ready(function(){
         $('#select2').text($("#d5").text());              
     }); 
 
-	//график	  
-    $("#r1").click(function(){ 
-    	$('#grafic').css('display','block'); 
-    	$('#diagram').css('display','none');              
-    });   
+	// //график	  
+ //    $("#r1").click(function(){ 
+ //    	$('#grafic').css('display','block'); 
+ //    	$('#diagram').css('display','none');              
+ //    });   
 
-    //диаграмма
-    $("#r2").click(function(){      
-    	$('#grafic').css('display','none'); 
-    	$('#diagram').css('display','block');         
-    }); 
+ //    //диаграмма
+ //    $("#r2").click(function(){      
+ //    	$('#grafic').css('display','none'); 
+ //    	$('#diagram').css('display','block');         
+ //    }); 
 
     // //input
     // $('#date_timepicker_start').datetimepicker({
