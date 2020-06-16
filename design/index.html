@@ -1,0 +1,117 @@
+<!--head-->
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--title-->
+	<title>
+		18ISTv1
+	</title>
+	<!--title-->
+	<meta http-equiv=Content-Type content="text/html;charset=UTF-8">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.datetimepicker.full.js"></script>
+	<link rel="stylesheet" href="css/jquery.datetimepicker.min.css">
+	<!-- Сюда наш скрипт !-->
+	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script src="https://use.fontawesome.com/95471cf8d3.js"></script>
+	<!--placeholder-->
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+	<div class="content">
+		<img src="/css/numerals.png" class="logo">
+		<div class="text_logo">numerals</div>
+		<div class="menu">
+			<a href="/index.php" style="color:#53d7a4 !important">Главная</a>
+			<a href="/about.php">О нас</a>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="container">
+<!--head-->
+
+<!--logo-->
+<div>
+	<div id="logo">
+		<img style="max-height: 100px;" src="logo.PNG">
+	</div>
+</div>
+<!--logo-->
+
+<!--chooseMachine-->
+<div>
+	<h1>
+		Графики станков
+	</h1>
+	<div class="select-box">
+		<div class="select-box__current" tabindex="1">
+			<input class="select-box__input" type="radio" checked="checked">
+			<p class="select-box__input-text" id="select1"></p>
+			<img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true">
+		</div>
+		<ul class="select-box__list">
+		<!--chooseMachineItem-->
+			<li>
+				<label class="select-box__option select-box__machines" aria-hidden="true">
+					<!--placeholder-->
+				</label>
+			</li>
+		<!--chooseMachineItem-->
+		</ul>
+	</div>
+</div>
+<!--chooseMachine-->
+
+<!--calendar-->
+<div class="container_main">
+
+	<div class="img_main" id="img1"></div>
+	<div class="text_main">
+		<h2 id="machine-header">Выберите станок</h2>
+		<p>
+			Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
+		</p>
+	</div>
+	<hr color=#c3c4c3 size=1px style="position:relative; top:56px;">
+	<div class="container_grafic">
+		<div class="form_radio_btn" id="r1">
+			<input id="radio-1" type="radio" name="radio" value="1" checked>
+			<label for="radio-1">График активности</label>
+		</div>
+<!-- 		<div class="form_radio_btn" id="r2">
+			<input id="radio-2" type="radio" name="radio" value="2">
+			<label for="radio-2">Диаграмма деятельности</label>
+		</div> -->
+		<!-- datetimepicker -->
+		<input type="text" id="datetimefrom" class="input">
+		- <input type="text" id="datetimeto" class="input">
+
+		<!-- сюда график -->
+		<div id="grafic">
+				<div id="graph_end" style="width: 900px; height: 500px"></div>
+		</div>
+		<!-- сюда диаграмму -->
+<!-- 		<div id="diagram"><img src="https://gidmark.ru/uploads/raboty/2020/march/rynka-plasticheskoj-hiryrgii-v-moskve-i-mo/diagr%202.jpg"></div> -->
+	</div>
+</div>
+<!--calendar-->
+
+<!--footer-->
+
+</div>
+</div>
+<hr color=#c3c4c3 style="position: relative; bottom: 50px;opacity: 0.5;">
+<div class="footer content">
+	<a href="index.php">Главная</a>
+	<a href="about.php">О нас</a>
+	<div class="copyright">© 18ИСТв1, 2020</div>
+</div>
+</body>
+</html>
+<!--footer-->
